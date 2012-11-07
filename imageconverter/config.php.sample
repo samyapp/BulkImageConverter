@@ -1,0 +1,192 @@
+<?php
+
+/***************************************
+ * phpAce Bulk Image Converter V1.0
+ * Copyright 2008 Sam Yapp
+ * http://www.phpace.com/products/bulk-image-converter/
+ *
+ * Support Forum: http://forum.phpace.com/
+ *
+ * You may not sell or distribute this 
+ * script without the express written 
+ * permission of the author.
+ ***************************************/
+
+$pabi_config = array();
+
+/***** General Site Options *****/
+
+// Site title appears in the browser title bar
+$pabi_config['site_title'] = 'phpAce Bulk Image Converter';
+
+// Site name appears above the form
+$pabi_config['site_name'] = 'Bulk Image Converter';
+
+/*********************************************
+
+	If 'standalone' is set to 0 then only the form
+	elements of the layout will be generated 
+	(no <html>, <head>, <body> etc tags).
+
+	You will need to include the styles for this
+	script in your own page however.
+
+**********************************************/
+
+// set to 1 if this script is running by itself, 0 if included by your own page
+$pabi_config['standalone'] = 1;
+
+/***** Configuration *****/
+
+// directory to use for uploaded images
+// needs to be writable to by these scripts
+$pabi_config['temp_dir'] = dirname(__FILE__) . '/temp';
+
+// chmod to use for uploaded images
+$pabi_config['dir_chmod'] = 0777;
+
+// maximum width and height to resize to
+$pabi_config['max_resize_width'] = 1600;
+$pabi_config['max_resize_height'] = 1200;
+
+// maximum filesize for images being added in Mb
+$pabi_config['max_image_filesize'] = 4;
+
+// maximum number of images to convert at once
+// note that the more images uploaded / converted
+// at once, the greater the load on your server
+$pabi_config['max_images'] = 20;
+
+/***** Look and Feel *****/
+
+// language / translation file to use
+// leave blank to use the default
+$pabi_config['language'] = '';
+
+// css stylesheet to use
+$pabi_config['stylesheet'] = 'styles.css';
+
+// template to use
+$pabi_config['template'] = 'layout.phtml';
+
+// options for common size select box
+// labels for these editable in the translations file
+$pabi_config['size_options'] = array(
+	'50x50',
+	'120x120',
+	'200x200',
+	'320x200',
+	'640x480',
+	'800x600',
+	'1024x768',
+	'1200x1024'
+);
+
+// options for jpeg quality select box
+// labels / translations for these in the translations file
+$pabi_config['jpeg_quality_options'] = array(
+	50,
+	60,
+	75,
+	85,
+	100
+);
+
+// default conversion options
+$pabi_config['default_options'] = array(
+	'size' => '640x480',
+	'resize' => 1,
+	'format' => 'jpg',
+	'watermark_text' => '',
+	'watermark_transparency' => 50,
+	'width' => '',
+	'height' => '',
+	'jpeg_quality' => 75,
+	'method' => 'scale',
+	'watermark_location' => 'bottom-right',
+	'watermark_size' => 16
+);
+
+
+/***** Watermark Settings *****/
+
+// watermark font name
+$pabi_config['watermark_font'] = 'verdanab';
+
+// padding to add around watermark text
+$pabi_config['watermark_padding'] = 5;
+
+// maximum watermark font size
+$pabi_config['max_watermark_size'] = 50;
+// minimum watermark font size
+$pabi_config['min_watermark_size'] = 8;
+// maximum length of watermark text
+$pabi_config['max_watermark_length'] = 80;
+
+// error reporting level
+$pabi_config['error_reporting'] = E_ALL ^ E_NOTICE;
+
+
+/***** Ad Codes ******************
+
+If you want adsense (or any other
+ads / banners) to be displayed
+you can enter their HTML codes
+in the options below to have them
+appear in the template without
+editing the template itself.
+
+Place the ad code on the lines between
+<<<ADCODE
+
+ADCODE;
+
+There are 6 predefined ad slots - you
+probably won't want to use all of them.
+
+Ensure you check your ad provider 
+(eg google adsense) terms on how many
+ads you can place.
+*********************************/
+
+// ad above the file upload section
+$pabi_config['above_upload_ad'] = <<<ADCODE
+
+ADCODE;
+
+// ad above the resizing options
+$pabi_config['above_resize_ad'] = <<<ADCODE
+
+ADCODE;
+
+// ad above the watermark options
+$pabi_config['above_watermark_ad'] = <<<ADCODE
+
+ADCODE;
+
+// ad above the format options
+$pabi_config['above_format_ad'] = <<<ADCODE
+
+ADCODE;
+
+// ad above the convert button
+$pabi_config['above_convert_ad'] = <<<ADCODE
+
+ADCODE;
+
+// ad below convert button
+$pabi_config['below_convert_ad'] = <<<ADCODE
+
+ADCODE;
+
+/***** Housekeeping Options *****/
+
+// every now and then the script removes old user upload dirs
+
+// frequency that dir cleaner will be run
+// 1 = every request, 100 = 1 in 100 chance that will be run
+$pabi_config['cleanup_frequency'] = 100;
+
+// remove user session dirs after eg 60 minutes of inactivity
+$pabi_config['clean_after_minutes'] = 60;
+

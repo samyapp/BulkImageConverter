@@ -1,0 +1,206 @@
+<?php if( !defined('PABI_INCLUDED') ) die(); ?>
+<?php if( pabi_setting('standalone') ) {?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title><?php echo htmlspecialchars(pabi_setting('site_title'))?></title>
+<link rel="stylesheet" type="text/css" href="<?php echo pabi_setting('stylesheet')?>" />
+<meta name="keywords" content="<?php echo pabi_translate('Meta Keywords')?>" />
+<meta name="description" content="<?php echo pabi_translate('Meta Description')?>">
+</head>
+<body>
+<?php } ?>
+
+	<div id="pabi_body">
+
+		<div id="pabi_wrapper">
+
+			<form action="<?php echo $_SERVER['SCRIPT_NAME']?>" method="post" enctype="multipart/form-data">
+
+				<fieldset>
+					<legend><?php echo htmlspecialchars(pabi_setting('site_name'))?></legend>
+					<div id="pabi_intro">
+						<?php echo pabi_translate('Intro Text',false)?>
+					</div>
+				</fieldset>
+
+				<?php echo pabi_setting('above_upload_ad')?>
+		
+				<fieldset>
+					<?php if( pabi_count_images() == 0 ) {?>
+					<legend><?php echo pabi_translate('Upload an image or zip')?></legend>
+					<div class="pabi_fields">
+						<input type="file" name="pabi_file" />
+					</div>
+					<div class="pabi_info">
+						<?php echo pabi_translate('Upload Instructions', false)?>
+					</div>
+					<?php }else{ ?>
+					<legend><?php echo pabi_count_images()?> <?php echo pabi_translate('Images Converted')?></legend>
+					<div class="pabi_fields">
+						<input class="pabi_big_button pabi_long_text" type="submit" name="pabi_download" value="<?php echo pabi_translate('Download')?>" />
+						<br /><br />
+						<input class="pabi_big_button pabi_long_text" type="submit" name="pabi_clear" value="<?php echo pabi_translate('Convert More')?>" />
+					</div>
+					<div class="pabi_info">
+						<?php 
+						if( pabi_count_images() == 1 ) {
+							echo pabi_translate('Download Image Instructions', false);
+						}
+						else{
+							echo pabi_translate('Download Zip Instructions', false);
+						}
+						?>
+						<br /><br />
+						<?php echo pabi_translate('Convert Again Instructions', false)?>
+					</div>
+					<?php } ?>
+				</fieldset>	
+
+				<?php if( count($pabi_errors) ) { ?>
+				<fieldset class="pabi_error">
+					<legend><?php echo pabi_translate('Error Messages')?></legend>
+					<ul>
+						<?php echo '<li>'.join('</li><li>',$pabi_errors).'</li>'?>
+					</ul>
+				</fieldset>
+				<?php }?>
+
+				<?php echo pabi_setting('above_resize_ad')?>
+
+				<fieldset>
+					<legend><?php echo pabi_translate('Resize Options')?></legend>
+					<div class="pabi_fields">
+						<label>
+							<input type="checkbox" name="pabi_options[resize]" value="1"<?php if( pabi_option('resize') ) echo ' checked="checked" '?> />
+							<?php echo pabi_translate('Resize Images?')?>
+						</label>
+						<br /><br />
+						<label>
+							<?php echo pabi_translate('Common Sizes')?>
+							<br />
+							<select name="pabi_options[size]">
+							<?php foreach( pabi_setting('size_options') as $pabi_size ) { ?>
+								<option value="<?php echo $pabi_size?>"<?php if( $pabi_size == pabi_option('size') ) echo ' selected="selected" '?>><?php echo $pabi_size . ' ('.pabi_translate($pabi_size).')'?></option>
+							<?php } ?>
+							</select>
+						</label>
+						<br /><br />
+						<label>
+							<?php echo pabi_translate('Custom Size')?>
+						</label>
+						<br />
+						<input class="pabi_short_text pabi_r" type="text" name="pabi_options[width]" value="<?php echo pabi_option('width')?>" />
+						x
+						<input class="pabi_short_text" type="text" name="pabi_options[height]" value="<?php echo pabi_option('height')?>" />
+					</div>
+					<div class="pabi_info">
+						<?php echo pabi_translate('Resize Instructions', false)?>
+					</div>
+
+				</fieldset>
+
+				<?php echo pabi_setting('above_watermark_ad')?>
+
+				<fieldset>
+					<legend><?php echo pabi_translate('Watermark Options')?></legend>
+					<div class="pabi_fields">
+						<label>
+							<?php echo pabi_translate('Watermark Text')?>
+							<br />
+							<input class="pabi_long_text" type="text" name="pabi_options[watermark_text]" value="<?php echo htmlspecialchars(pabi_option('watermark_text'))?>" />
+						</label>
+						<br /><br />
+						<label>
+							<?php echo pabi_translate('Transparency')?>
+							<br />
+							<input class="pabi_short_text pabi_r" type="text" name="pabi_options[watermark_transparency]" value="<?php echo pabi_option('watermark_transparency')?>" />%
+						</label>
+						<br /><br />
+						<label>
+							<?php echo pabi_translate('Watermark Location')?>
+						</label>
+						<br />
+						<input type="radio" name="pabi_options[watermark_location]" value="top-left" <?php if( pabi_option('watermark_location') == 'top-left' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="top" <?php if( pabi_option('watermark_location') == 'top' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="top-right" <?php if( pabi_option('watermark_location') == 'top-right' ) echo ' checked="checked" '?>/>
+						<br />
+						<input type="radio" name="pabi_options[watermark_location]" value="left" <?php if( pabi_option('watermark_location') == 'left' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="middle" <?php if( pabi_option('watermark_location') == 'middle' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="right" <?php if( pabi_option('watermark_location') == 'right' ) echo ' checked="checked" '?>/>
+						<br />
+						<input type="radio" name="pabi_options[watermark_location]" value="bottom-left" <?php if( pabi_option('watermark_location') == 'bottom-left' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="bottom" <?php if( pabi_option('watermark_location') == 'bottom' ) echo ' checked="checked" '?>/>
+						<input type="radio" name="pabi_options[watermark_location]" value="bottom-right" <?php if( pabi_option('watermark_location') == 'bottom-right' ) echo ' checked="checked" '?>/>
+
+						<?php if( function_exists('imagettfbbox') ) { ?>
+						<br /><br />
+						<label><?php echo pabi_translate('Watermark Size')?></label>
+						<br />
+						<input class="pabi_short_text" type="text" name="pabi_options[watermark_size]" value="<?php echo pabi_option('watermark_size')?>" />
+						<?php }?>
+					</div>
+					<div class="pabi_info">
+						<?php echo pabi_translate('Watermark Instructions', false)?>
+					</div>
+				</fieldset>
+			
+				<?php echo pabi_setting('above_format_ad')?>
+
+				<fieldset>
+					<legend><?php echo pabi_translate('Format Options')?></legend>
+					<div class="pabi_fields">
+						<label>
+							<?php echo pabi_translate('Save as...')?>
+							<br />
+							<select name="pabi_options[format]">
+								<option value=""><?php echo pabi_translate('Original format')?></option>
+								<option value="jpg"<?php if( pabi_option('format') == 'jpg' ) echo ' selected="selected" '?>>JPEG</option>
+								<option value="png"<?php if( pabi_option('format') == 'png' ) echo ' selected="selected" '?>>PNG</option>
+								<option value="gif"<?php if( pabi_option('format') == 'gif' ) echo ' selected="selected" '?>>GIF</option>
+							</select>
+						</label>
+						<br /><br />
+						<label>
+							<?php echo pabi_translate('JPEG Quality')?>
+							<br />
+							<select name="pabi_options[jpeg_quality]">
+								<?php foreach( pabi_setting('jpeg_quality_options') as $pabi_quality ) {?>
+								<option value="<?php echo $pabi_quality?>"<?php if( $pabi_quality == pabi_option('jpeg_quality') ) echo ' selected="selected" '?>><?php echo pabi_translate($pabi_quality)?> (<?php echo $pabi_quality?>)</option>
+								<?php }?>
+							</select>
+						</label>
+					</div>
+					<div class="pabi_info">
+						<?php echo pabi_translate('Convert Instructions', false)?>
+					</div>
+
+				</fieldset>
+
+				<?php echo pabi_setting('above_convert_ad')?>
+
+				<fieldset>
+				<?php if( pabi_count_images() ) { ?>
+					<legend><?php echo pabi_translate('Convert Again')?></legend>
+				<?php }else{ ?>
+					<legend><?php echo pabi_translate('Upload & Convert')?></legend>
+				<?php }?>
+					<div id="pabi_progressbar">
+					<?php echo pabi_translate('Working... Please Wait :)')?>
+					</div>
+					<input id="pabi_submit" class="pabi_big_button pabi_long_text" type="submit" name="pabi_convert" value="<?php echo pabi_translate('Convert Images')?>" onclick="this.style.display = 'none'; document.getElementById('pabi_progressbar').style.display = 'block';" />
+				</fieldset>
+
+				<?php echo pabi_setting('below_convert_ad')?>
+
+			</form>
+
+			<div class="pabi_powered">powered by <a href="http://www.phpace.com/products/bulk-image-converter/">phpAce Bulk Image Converter</a></div>
+
+		</div>
+
+	</div>
+<?php if( pabi_setting('standalone') ) { ?>
+</body>
+</html>
+<?php } ?>

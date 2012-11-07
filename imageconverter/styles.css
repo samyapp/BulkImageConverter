@@ -1,0 +1,138 @@
+/***************************************
+ * phpAce Bulk Image Converter V1.0
+ * Copyright 2008 Sam Yapp
+ * http://www.phpace.com/products/bulk-image-converter/
+ *
+ * Support Forum: http://forum.phpace.com/
+ *
+ * You may not sell or distribute this 
+ * script without the express written 
+ * permission of the author.
+ ***************************************/
+
+/* wrapper around all the html elements - used to center the form on the page */
+#pabi_body{
+	text-align: center;
+}
+
+/* sets the width of the form */
+#pabi_wrapper{
+	text-align: left;
+	margin: auto;
+	width: 40em;
+}
+
+/* used for short <input> elements, eg. watermark transparency value */
+.pabi_short_text{
+	width: 4em;
+}
+
+/* used for longer <input> elements that stretch to fit the space available */
+.pabi_long_text{
+	width: 98%;
+}
+
+/* convert, download and convert more buttons */
+.pabi_big_button{
+	padding: 0.5em;
+	font-family: helvetica,tahoma;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+/* div around the form fields in each section */
+.pabi_fields{
+	float: left;
+	width: 37%;
+	text-align: center;
+	padding-top: 1em;
+}
+
+/* div containing instructions in each section */
+.pabi_info{
+	float: right;
+	width: 57%;
+	font-size: 80%;
+	font-family: verdana;
+	background-color: white;
+	border: 1px solid #acacac;
+	color: #555555;
+	padding: 0.5em;
+}
+
+/* intro text at top of page */
+#pabi_intro{
+	margin: 0.5em;
+	padding: 0.5em;
+	background-color: white;
+	font-family: verdana;
+	font-size: 80%;
+	border: 1px solid #acacff;
+}
+
+/* styles for <legend> tag used to give each section a heading */
+#pabi_wrapper legend{
+	font-weight: bold;
+	font-size: 120%;
+	color: #000055;
+	font-family: helvetica;
+}
+
+/* styles for <fieldset> surrounding each section */
+#pabi_wrapper fieldset{
+	border: 1px solid #acacff;
+	background-color: #eeeeff;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+/* labels for form field elements */
+#pabi_wrapper label{
+	font-weight: bold;
+}
+
+/* right-aligning text in transparency and width inputs */
+.pabi_r{
+	text-align: right;
+}
+
+/* error message box */
+#pabi_wrapper fieldset.pabi_error{
+	color: red;
+	background-color: #fffefe;
+	border: 1px solid #ffacac;
+	font-weight: bold;
+}
+
+/* heading for error message box */
+#pabi_wrapper fieldset.pabi_error legend{
+	color: red;
+}
+
+/*
+	animated loading gif which appears at bottom of form when
+	convert button is pressed (if javascript enabled)
+*/
+#pabi_progressbar{
+	width: 100%;
+	display: none;
+	background: url(loading.gif) no-repeat center;
+	padding-top: 40px;
+	text-align: center;
+	font-weight: bold;
+	font-family: helvetica,tahoma,arial;
+	font-size: 1em;
+}
+
+/* powered by link style */
+.pabi_powered{
+	margin: 1em;
+	color: #acacac;
+	text-align: center;
+	font-family: verdana;
+	font-size: 80%;
+}
+
+.pabi_powered a{
+	color: #acacac;
+}
