@@ -1,27 +1,11 @@
-/***************************************
- * phpAce Bulk Image Converter V1.0
- * Copyright 2008 Sam Yapp
- * http://www.phpace.com/products/bulk-image-converter/
- *
- * Support Forum: http://forum.phpace.com/
- *
- * You may not sell or distribute this 
- * script without the express written 
- * permission of the author.
- *
- * Each licence you purchase permits you to install
- * one copy of these scripts only.
- *
- * This script makes of the PclZip library
- * released under the lgpl by Vincent Blavet 
- * http://www.phpconcept.net
- * You can obtain updates to the pclzip.lib.php
- * from http://www.phpconcept.net/pclzip/index.en.php
- ***************************************/
+Bulk Image Converter V1.0
+=============================
+Copyright _2008_ Sam Yapp
+https://githib.com/samyapp/BulkImageConverter/
+Released under the MIT Licence
 
-I) Requirements
-II) Installation
-III) Customization 
+This script makes of the PclZip library released under the lgpl by Vincent Blavet 
+http://www.phpconcept.net You can obtain updates to the pclzip.lib.ph from http://www.phpconcept.net/pclzip/index.en.php
 
 I) Requirements
 - recent version of php (4 or 5)
@@ -100,5 +84,4 @@ III) Customization
 	The second option is recommended as your changes will not be overwritten if you
 	update the script to a newer version in the future.
 
-*** Support Forum: http://forum.phpace.com/ ***
 
