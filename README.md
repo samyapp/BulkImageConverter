@@ -1,3 +1,6 @@
+# Archived, ancient code.
+
+
 Bulk Image Converter V1.0
 =============================
 Copyright _2008_ Sam Yapp
